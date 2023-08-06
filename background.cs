@@ -214,12 +214,10 @@ public partial class background
         shortcut.IconLocation = "C:\\Windows\\System32\\OkDone_80.png";
 
         //ショートカットを作成
-        shortcut.Save();
-
-        //後始末
+        shortcut.Save()
+        //後処理
         System.Runtime.InteropServices.Marshal.FinalReleaseComObject(shortcut);
         System.Runtime.InteropServices.Marshal.FinalReleaseComObject(shell);
-        //後処理
         httpClient.Dispose();
         MessageBox.Show("エラー\n対応しているdllが見つかりませんでした\nソフトを再起動し、もう一度試してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         Environment.Exit(0);
